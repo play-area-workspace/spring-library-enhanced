@@ -29,7 +29,7 @@ public class SecurityConfig {
         return http
                 .csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/users/register", "/api/auth/login", "/swagger-ui/**", "/v3/api-docs/**","/api/books", "/api/books/search").permitAll()
+                .requestMatchers("/api/users/register", "/api/auth/login", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
