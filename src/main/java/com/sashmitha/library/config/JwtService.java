@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,8 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class JwtService {
 
-    private final String SECRET_KEY = "yourSecretKeyHere"; // You can load this from env or config
+    @Value("${app.jwt-secret}")
+    private String SECRET_KEY;
 
     // Extract username from JWT
     public String extractUsername(String token) {
