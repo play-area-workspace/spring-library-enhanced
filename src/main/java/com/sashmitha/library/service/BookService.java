@@ -2,6 +2,8 @@ package com.sashmitha.library.service;
 
 import com.sashmitha.library.entity.Book;
 import com.sashmitha.library.repository.BookRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,22 +18,22 @@ public class BookService {
     }
 
     // Get all books
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public Page<Book> getAllBooks(Pageable pageable) {
+        return bookRepository.findAll(pageable);
     }
 
     // Search books by author
-    public List<Book> searchBooksByAuthor(String author) {
-        return bookRepository.findByAuthor(author);
+    public Page<Book> searchBooksByAuthor(String author, Pageable pageable) {
+        return bookRepository.findByAuthor(author, pageable);
     }
 
     // Search books by published year
-    public List<Book> searchBooksByPublishedYear(int publishedYear) {
-        return bookRepository.findByPublishedYear(publishedYear);
+    public Page<Book> searchBooksByPublishedYear(int publishedYear, Pageable pageable) {
+        return bookRepository.findByPublishedYear(publishedYear, pageable);
     }
 
     // Get books with available copies
-    public List<Book> getAvailableBooks() {
-        return bookRepository.findByAvailableCopiesGreaterThan(0);
+    public Page<Book> getAvailableBooks(Pageable pageable) {
+        return bookRepository.findByAvailableCopiesGreaterThan(0, pageable);
     }
 }
